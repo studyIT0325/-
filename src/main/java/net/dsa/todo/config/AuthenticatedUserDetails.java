@@ -31,7 +31,9 @@ public class AuthenticatedUserDetails implements UserDetailsService {
 		
 //		if(findUser.isPresent()) return new AuthenticatedUser(findUser.get());
 //		return null;
-		User user = userRepository.findById(username).orElseThrow(() -> new RuntimeException("사용자를 찾을 수 없습니다."));
+		User user = userRepository.findById(username).orElseThrow(() -> new UsernameNotFoundException(username + "을 찾을 수 없습니다."));
+//		User user = userRepository.findById(username).orElseThrow(() -> new RuntimeException(username + "을 찾을 수 없습니다."));
+		
 		return new AuthenticatedUser(user);
 	}
 

@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -45,7 +46,8 @@ public class UserController {
 	
 	// 로그인 폼 이동
 	@GetMapping("user/login")
-	public String login(Model model) {
+	public String login(@RequestParam(name="message", required=false) String message, Model model) {
+		log.info("message: {}", message);
 		model.addAttribute("loginForm", new LoginForm());
 		return "login";
 	}
